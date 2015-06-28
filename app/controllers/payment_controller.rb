@@ -34,13 +34,16 @@ class PaymentController < ApplicationController
 				:userid  => userid 
 			}
 
-			callback_url  		= URI::escape(  "http://#{ payment_config["callbackdomain"] }:#{ payment_config["callbackport"] }/received?#{ params.map { |k,v| "#{k}=#{v}" }.join("&") }"  )
+			callback_url  		= URI::escape(  "http://#{ payment_config["callbackdomain"] }:#{ payment_config["callbackport"] }/payment/received?#{ params.map { |k,v| "#{k}=#{v}" }.join("&") }"  )
 			url 				= "https://blockchain.info/api/receive?method=create&address=#{ receiving_address }&callback=#{ callback_url }"
  			res 				= JSON.parse(open(url).read)
 			
 			response[:status] = 0 
 			response[:statusmsg] = "OK"
 			response[:input_address] = res["input_address"] 
+
+			p callback_url
+
 			
 
 		rescue Exception => e
