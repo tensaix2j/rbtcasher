@@ -39,7 +39,7 @@ class PaymentController < ApplicationController
  			res 				= JSON.parse(open(url).read)
 			
 			response[:status] = 0 
-			response[:statusmsg] = "OK"
+			response[:statusmsg] = "*ok*"
 			response[:input_address] = res["input_address"] 
 
 			p callback_url
