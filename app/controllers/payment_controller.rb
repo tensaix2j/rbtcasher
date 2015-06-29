@@ -39,7 +39,7 @@ class PaymentController < ApplicationController
  			res 				= JSON.parse(open(url).read)
 			
 			response[:status] = 0 
-			response[:statusmsg] = "*ok*"
+			response[:statusmsg] = "OK"
 			response[:input_address] = res["input_address"] 
 
 			p callback_url
@@ -96,7 +96,7 @@ class PaymentController < ApplicationController
 				pr.params = other_params.to_json
 				pr.save()
 			end
-			render :text => "ok"
+			render :text => "*ok*"
 		else
 			render :text => "Not authorised"
 		end
